@@ -4,7 +4,14 @@ import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { CITIES, PROPERTY_TYPES } from "@/lib/data";
-import { Search } from "lucide-react";
+import {
+  Home,
+  Building,
+  Search,
+  TreeDeciduous,
+  Leaf,
+} from "lucide-react";
+import SearchTopLink from "./search-top-link";
 
 export type SearchValues = {
   city?: string;
@@ -12,7 +19,11 @@ export type SearchValues = {
   type?: string;
 };
 
-export function SearchBar({ onSearch }: { onSearch?: (v: SearchValues) => void }) {
+export function SearchBar({
+  onSearch,
+}: {
+  onSearch?: (v: SearchValues) => void;
+}) {
   const [values, setValues] = React.useState<SearchValues>({});
 
   function handleSubmit(e: React.FormEvent) {
@@ -21,44 +32,84 @@ export function SearchBar({ onSearch }: { onSearch?: (v: SearchValues) => void }
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-3 rounded-full border bg-background/90 p-2 backdrop-blur sm:grid-cols-[160px_1fr_160px_auto]"
-      aria-label="Search properties"
-    >
-      <NativeSelect
-        aria-label="City"
-        defaultValue={CITIES[0]}
-        onChange={(e) => setValues((s) => ({ ...s, city: e.target.value }))}
-        className="rounded-full"
+    <div className="flex items-center justify-center flex-col gap-3 w-full">
+      <div className="flex items-center gap-2 text-white/50 text-[12px]">
+        <SearchTopLink
+          items={[
+            {
+              label: "Apartments",
+              value: "apartments",
+              icon: <Building size={12} />,
+            },
+            {
+              label: "Holiday Homes",
+              value: "holiday-homes",
+              icon: <TreeDeciduous size={12} />,
+            },
+            {
+              label: "Resale Properties",
+              value: "resale-properties",
+              icon: <Home size={12} />,
+            },
+            {
+              label: "Co-working Space",
+              value: "coworking-space",
+              icon: <Leaf size={12} />,
+            },
+          ]}
+        />
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto flex w-full items-center gap-2 rounded-full border bg-background p-2 px-4 backdrop-blur"
+        aria-label="Search properties"
       >
-        {CITIES.map((c) => (
-          <option key={c} value={c}>
-            {c}
-          </option>
-        ))}
-      </NativeSelect>
-      <Input
-        aria-label="Search"
-        placeholder="Search by location or project"
-        onChange={(e) => setValues((s) => ({ ...s, q: e.target.value }))}
-        className="rounded-full"
-      />
-      <NativeSelect
-        aria-label="Type"
-        defaultValue={PROPERTY_TYPES[0]}
-        onChange={(e) => setValues((s) => ({ ...s, type: e.target.value }))}
-        className="rounded-full"
-      >
-        {PROPERTY_TYPES.map((t) => (
-          <option key={t} value={t}>
-            {t}
-          </option>
-        ))}
-      </NativeSelect>
-      <Button type="submit" className="rounded-full">
-        <Search className="mr-2 size-4" /> Search
-      </Button>
-    </form>
+        <div className="flex min-w-48 flex-col gap-0 px-1 border-r">
+          <span className="text-xs">City</span>
+          <NativeSelect
+            aria-label="City"
+            defaultValue={CITIES[0]}
+            onChange={(e) => setValues((s) => ({ ...s, city: e.target.value }))}
+            className="rounded-full"
+          >
+            {CITIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </NativeSelect>
+        </div>
+
+        <div className="flex flex-col min-w-74 gap-0 px-1 border-r">
+          <span className="text-xs">Search</span>
+          <Input
+            aria-label="Search"
+            placeholder="Search Destination"
+            onChange={(e) => setValues((s) => ({ ...s, q: e.target.value }))}
+            className="rounded-full"
+          />
+        </div>
+
+        <div className="flex min-w-48 flex-col gap-0 px-1">
+          <span className="text-xs">Type</span>
+          <NativeSelect
+            aria-label="Type"
+            defaultValue={PROPERTY_TYPES[0]}
+            onChange={(e) => setValues((s) => ({ ...s, type: e.target.value }))}
+            className="rounded-full"
+          >
+            {PROPERTY_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </NativeSelect>
+        </div>
+
+        <Button type="submit" className="rounded-full">
+          <Search size={16} />
+        </Button>
+      </form>
+    </div>
   );
 }

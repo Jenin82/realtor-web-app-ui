@@ -12,7 +12,7 @@ export function SiteFooter() {
           {/* Top cover image */}
           <div className="relative">
             <Image
-              src="/footer/footer-image.jpg"
+              src="/images/footer/footer-image.jpg"
               alt="City skyline"
               width={1440}
               height={500}
