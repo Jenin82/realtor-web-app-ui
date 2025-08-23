@@ -47,15 +47,21 @@ export function generateStaticParams() {
   return allProjects().map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   return {
     title: project ? project.title : "Project",
   };
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectPage(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) return notFound();
 
   const similar = (

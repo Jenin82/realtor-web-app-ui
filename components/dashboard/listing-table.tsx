@@ -11,7 +11,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Drawer,
   DrawerContent,
-  DrawerHeader,
   DrawerTitle,
   DrawerDescription,
   DrawerClose,
@@ -23,7 +22,6 @@ import {
   FileText,
   BarChart2,
   Play,
-  ArrowUpLeft,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -293,7 +291,7 @@ function ListingDrawerPanel({ item }: { item: ListingItem }) {
               </div>
               <p className="mt-2 px-3.5 text-sm leading-6 text-muted-foreground">
                 Claim your own piece of majestic living beneath the clouds.
-                Welcome aboard Green Clouds, Kerala's First Biophilic Sky
+                Welcome aboard Green Clouds, Kerala&#39;s First Biophilic Sky
                 Bungalows by Veegaland Homes. It is exceptionally unique and
                 available only through exclusive invitation. These homes are
                 designed for a discerning community of families who prioritise

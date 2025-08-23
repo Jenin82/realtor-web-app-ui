@@ -1,9 +1,7 @@
 import { Navigation, ShoppingBag, Train, TreePine, Utensils } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-type Props = {}
-
-const Neighbourhood = (props: Props) => {
+const Neighbourhood = () => {
   return (
     <Tabs defaultValue="metro" className="w-full">
       <TabsList className="w-full overflow-x-auto">
