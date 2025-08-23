@@ -2,6 +2,7 @@ import { SearchBar } from "@/components/buyer/search-bar";
 import { PropertyCard } from "@/components/buyer/property-card";
 import { POPULAR_BY_CITY } from "@/lib/data";
 import Navbar from "@/components/site/navbar";
+import { ChevronRight } from "lucide-react";
 
 export default function HomePage() {
   const kochi = POPULAR_BY_CITY.Kochi;
@@ -26,9 +27,10 @@ export default function HomePage() {
       </section>
 
       {/* Popular sections */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-10 lg:px-8">
-        <h2 className="mb-4 text-xl font-semibold">
+      <section className="mx-auto w-full max-w-[1120px] px-6 py-18 lg:px-8">
+        <h2 className="mb-4 text-xl font-medium flex items-center gap-2">
           Popular Properties in Kochi
+          <ChevronRight />
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {kochi.map((p) => (
@@ -37,9 +39,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 pb-16 lg:px-8">
-        <h2 className="mb-4 text-xl font-semibold">
+      <section className="mx-auto w-full max-w-[1120px] px-6 pb-18 lg:px-8">
+        <h2 className="mb-4 text-xl font-medium flex items-center gap-2">
           Popular Properties in Pune
+          <ChevronRight />
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {pune.map((p) => (
